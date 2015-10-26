@@ -6,7 +6,9 @@
 	%li= @client.address.street
 	%li= "#{@client.address.zip_code} #{@client.address.city}"
 	%li= @client.address.voivodeship
-%p= "Firm w serwisie: #{@client.companies.count}"
+%p 
+	Firm w serwisie:
+	= link_to @client.companies.count, client_companies_path(@client)
 %p
 	%span= "Notka dotycząca klienta: #{@client.comment}"
 	%span= link_to 'Edytuj notkę', note_client_path

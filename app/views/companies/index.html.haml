@@ -1,0 +1,14 @@
+%h2= "Firmy klienta #{company_owner.full_name}"
+
+%table.table.table-stripped
+  %tr
+    %th id
+    %th Nazwa
+    %th Data zakończenia umowy
+    %th Akcja
+  - @companies.each do |company|
+    %tr
+      %td= company.id
+      %td= company.name
+      %td= company.end_date
+      %td= link_to 'Więcej', client_company_path(company_owner.id, company)
