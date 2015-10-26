@@ -7,4 +7,8 @@ class Client < ActiveRecord::Base
     validates :firstname, :lastname, :nip, presence: { message: 'Pole nie może być puste' }
     validates :nip, uniqueness: true
     validates :nip, length: { is: 10 }
+
+    def full_name
+    	return "#{self.firstname} #{self.lastname}"
+    end
 end

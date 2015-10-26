@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :current_client, only: [:show, :destroy]
+  before_action :current_client, only: [:show, :edit, :note, :update, :destroy]
 
   def index
     @clients = Client.all
@@ -22,9 +22,23 @@ class ClientsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @client.update(client_params)
+      redirect_to client_path(@client), notice: 'Dane zostały zmienione'
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @client.destroy
     redirect_to clients_path, notice: 'Klient został usunięty'
+  end
+
+  def note
   end
 
   private

@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  street: MyString
-  zip_code: MyString
-  city: MyString
-  voivodeship: MyString
+poznan:
+  street: Wroclawska
+  zip_code: 12-345
+  city: Poznan
+  voivodeship: Wielkopolskie
   visible: false
   client: bartek
 
-two:
-  street: MyString
-  zip_code: MyString
-  city: MyString
-  voivodeship: MyString
+wroclaw:
+  street: Poznanska
+  zip_code: 54-321
+  city: Wroclaw
+  voivodeship: Dolnaslaskie
   visible: false
   client: damian
