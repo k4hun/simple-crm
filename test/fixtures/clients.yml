@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bartek:
+  firstname: bartek
+  lastname: k
+  nip: 1234567890
+  comment: MyText
+  visible: false
+
+damian:
+  firstname: MyString
+  lastname: MyString
+  nip: 2345678901
+  comment: MyText
+  visible: false
+
+invalid:
+  firstname: asd123
+  lastname: 321asd
+  comment: comment
+  visible: true

@@ -1,0 +1,15 @@
+%h2 Klienci
+
+= link_to 'Dodaj klienta', new_client_path
+%table.table.table-stripped
+  %tr
+    %th id
+    %th Imie i nazwisko
+    %th Firmy
+    %th Akcja
+  - @clients.each do |client|
+    %tr
+      %td= client.id
+      %td= "#{client.firstname} #{client.lastname}"
+      %td= client.companies.count
+      %td= link_to 'Więcej', client_path(client)

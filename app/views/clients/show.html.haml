@@ -1,0 +1,12 @@
+%h2 Dane klienta
+
+%p= fullname
+%p Dane adresowe:
+%ul
+	%li= @client.address.street
+	%li= "#{@client.address.zip_code} #{@client.address.city}"
+	%li= @client.address.voivodeship
+%p= "Firm w serwisie: #{@client.companies.count}"
+
+= link_to 'Usuń klienta', client_path(@client), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć tego klienta?'}, class: 'btn btn-danger'
+= link_to 'Lista klientów', clients_path, class: 'btn btn-primary'
