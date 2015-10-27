@@ -5,10 +5,10 @@
     %th id
     %th Nazwa
     %th Data zakończenia umowy
-    %th Akcja
+    %th Więcej
   - @companies.each do |company|
     %tr
       %td= company.id
       %td= company.name
       %td= company.end_date
-      %td= link_to 'Więcej', client_company_path(company_owner.id, company)
+      %td= link_to content_tag(:span, class: 'glyphicon glyphicon-list-alt' ), client_company_path(company_owner.id, company)

@@ -1,15 +1,15 @@
 %h2 Klienci
 
-= link_to 'Dodaj klienta', new_client_path
+= link_to 'Dodaj klienta', new_client_path, class: 'btn btn-default'
 %table.table.table-stripped
   %tr
     %th id
     %th Imie i nazwisko
     %th Firmy
-    %th Akcja
+    %th Więcej
   - @clients.each do |client|
     %tr
       %td= client.id
       %td= "#{client.firstname} #{client.lastname}"
       %td= client.companies.count
-      %td= link_to 'Więcej', client_path(client)
+      %td= link_to content_tag(:span, '', class: 'glyphicon glyphicon-list-alt'), client_path(client)

@@ -1,6 +1,7 @@
 = simple_form_for @client do |c|
 	= c.input :firstname, label: 'Imię'
 	= c.input :lastname, label: 'Nazwisko'
+	= c.input :email, label: 'Adres email'
 	= c.input :nip, label: 'NIP'
 	= c.simple_fields_for :address, html: { class: 'form-horizontal' } do |addr|
 		= addr.input :street, label: 'Ulica'
