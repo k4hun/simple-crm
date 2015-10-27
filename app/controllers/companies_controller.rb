@@ -1,4 +1,7 @@
 class CompaniesController < ApplicationController
+  before_action :current_company, only: [:show, :edit, :update, :destroy]
+  before_action :client, only: [:show, :edit, :update, :destroy]
+  
   def index
   	@companies = client.companies
   end
@@ -24,6 +27,10 @@ class CompaniesController < ApplicationController
   end
 
   private 
+  
+  def current_company
+    @company ||= Company.find(params[:id])
+  end
 
   def client
   	@client ||= Client.find(params[:client_id])

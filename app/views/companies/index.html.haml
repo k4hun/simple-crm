@@ -1,4 +1,7 @@
-%h2= "Firmy klienta #{company_owner.full_name}"
+%h2
+  Firmy klienta 
+  %i= "#{company_owner.full_name}"
+%p= link_to 'Wróć', client_path(@client), class: 'btn btn-default'
 
 %table.table.table-stripped
   %tr
@@ -10,5 +13,5 @@
     %tr
       %td= company.id
       %td= company.name
-      %td= company.end_date
-      %td= link_to content_tag(:span, class: 'glyphicon glyphicon-list-alt' ), client_company_path(company_owner.id, company)
+      %td= company.end_date.to_date
+      %td= link_to content_tag(:span, '', class: 'glyphicon glyphicon-list-alt' ), client_company_path(company_owner.id, company)

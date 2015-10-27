@@ -1,2 +1,22 @@
-%h1 Companies#show
-%p Find me in app/views/companies/show.html.haml
+%h2
+    =@company.name
+    %i= " - #{@client.full_name}"
+// %p Adres:
+// %ul
+// 	%li= @client.address.street
+// 	%li= "#{@client.address.zip_code} #{@client.address.city}"
+// 	%li= @client.address.voivodeship
+// %p= "Adres email: #{@client.email}"
+// %p= "NIP: #{@client.nip}"
+// %p 
+// 	Firm w serwisie:
+// 	= link_to @client.companies.count, client_companies_path(@client), class: 'btn btn-default'
+// %p
+// 	%span= "Notka dotycząca klienta: #{@client.comment}"
+// 	%span= link_to 'Edytuj notkę', note_client_path
+
+// %p	
+// 	= link_to 'Dodaj firmę', new_client_company_path(@client), class: 'btn btn-success'
+// 	= link_to 'Zmień dane klienta', edit_client_path(@client), class: 'btn btn-warning'
+// 	= link_to 'Usuń klienta', client_path(@client), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć tego klienta?'}, class: 'btn btn-danger'
+// %p= link_to 'Wróć do listy klientów', clients_path, class: 'btn btn-primary'

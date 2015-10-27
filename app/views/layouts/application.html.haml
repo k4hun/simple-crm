@@ -8,4 +8,17 @@
     = csrf_meta_tags
   %body
     .container
-      = yield
+      %ul.nav.nav-tabs
+        %li= link_to 'Twoje konto'
+        %li.active= link_to 'Klienci', clients_path
+        %li= link_to 'Zadania'
+        %li= link_to 'Powiadomienia'
+    .container
+      .col-md-9
+        = yield
+      .col-md-3
+        %h3 Ostatnia aktywność
+        %ul
+          %li Damian dodał Damiana
+          %li Batek dodał Bartka
+          %li yyy O.o
