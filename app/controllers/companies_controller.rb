@@ -25,6 +25,19 @@ class CompaniesController < ApplicationController
 
   def edit
   end
+  
+  def update
+    if @company.update(company_params)
+      redirect_to client_company_path(@client, @company), notice: 'Dane firmy zmienione'
+    else
+      render 'edit'
+    end
+  end
+  
+  def destroy
+    @company.destroy
+    redirect_to client_path(@client), notice: 'Klient został usunięty'
+  end
 
   private 
   
@@ -37,7 +50,7 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-  	params.require(:company).permit(:name, :end_date, 
+  	params.require(:company).permit(:name, :end_date, :description,
   									address_attributes: [:street, :zip_code, :city, :voivodeship])
   end
 end

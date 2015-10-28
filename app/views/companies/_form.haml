@@ -1,5 +1,3 @@
-%h2= "Dodaj firmę klienta: #{company_owner.full_name}"
-
 = simple_form_for [@client, @company] do |c|
 	= c.input :name, label: 'Nazwa firmy'
 	= c.input :end_date, label: 'Data zakończenia umowy'

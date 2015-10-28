@@ -1,7 +1,9 @@
 %h2
   Firmy klienta 
   %i= "#{company_owner.full_name}"
-%p= link_to 'Wróć', client_path(@client), class: 'btn btn-default'
+%p
+  = link_to 'Wróć', client_path(@client), class: 'btn btn-default'
+  = link_to 'Dodaj firmę', new_client_company_path(@client), class: 'btn btn-success'
 
 %table.table.table-stripped
   %tr
