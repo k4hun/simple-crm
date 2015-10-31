@@ -1,0 +1,25 @@
+%h2 
+  Dane dodatkowe -
+  %i= @client.name
+  
+.col-md-3
+  %p
+    = link_to 'Wróć', client_path(@client), class: 'btn btn-default'
+.col-md-9
+  %p
+    Dodaj informację
+    = simple_form_for [@client, @info], html: { class: 'form-inline' } do |i|
+      = i.input :info_type, collection: Info::TYPES, selected: Info::TYPES.first, label: 'Typ'
+      = i.input :value, label: 'Wartość'
+      = i.submit 'Dodaj'
+
+- unless @infos.present?
+  %p Brak dodatkowych informacji
+- else
+  %table.table.table-striped.table-hover.table-bordered
+    - @infos.each do |info|
+      %tr 
+        %td= info.info_type
+        %td= info.value
+        %td.text-center= link_to content_tag(:span, '', class: 'glyphicon glyphicon-remove'), client_info_path(@client, info), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć kontakt?'}
+  

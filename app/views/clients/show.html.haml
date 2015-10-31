@@ -1,20 +1,32 @@
-%h2= "Dane klienta: #{@client.full_name}"
-%p Adres:
+%h2= "Dane klienta: #{@client.name}"
+%p
+	= link_to 'Zmień dane główne', edit_client_path(@client), class: 'btn btn-primary'
+	= link_to 'Zmień dane kontaktowe', client_infos_path(@client), class: 'btn btn-primary'
+	= link_to 'Usuń klienta', client_path(@client), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć tego klienta?'}, class: 'btn btn-danger'
+
+%p Dane adresowe:
 %ul
 	%li= @client.address.street
 	%li= "#{@client.address.zip_code} #{@client.address.city}"
 	%li= @client.address.voivodeship
-%p= "Adres email: #{@client.email}"
+	
+%p Dane kontaktowe:
+%ul
+	%li= "Główny email: #{@client.email}"
+	- @client.infos.each do |info|
+		%li= "#{info.info_type}: #{info.value}"
+	
 %p= "NIP: #{@client.nip}"
-%p 
-	Firm w serwisie:
-	= link_to @client.companies.count, client_companies_path(@client), class: 'btn btn-default'
+
+-if @client.companies.any?
+	%p 
+		Firm w serwisie:
+		= link_to @client.companies.count, client_companies_path(@client), class: 'btn btn-default'
+
 %p
 	%span= "Notka dotycząca klienta: #{@client.comment}"
 	%span= link_to 'Edytuj notkę', note_client_path
 
 %p	
 	= link_to 'Dodaj firmę', new_client_company_path(@client), class: 'btn btn-success'
-	= link_to 'Zmień dane klienta', edit_client_path(@client), class: 'btn btn-warning'
-	= link_to 'Usuń klienta', client_path(@client), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć tego klienta?'}, class: 'btn btn-danger'
-%p= link_to 'Wróć do listy klientów', clients_path, class: 'btn btn-primary'
+%p= link_to 'Wróć do listy klientów', clients_path, class: 'btn btn-warning'

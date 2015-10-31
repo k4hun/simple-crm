@@ -1,4 +1,4 @@
-%h2= "Dodaj firmę klienta: #{company_owner.full_name}"
+%h2= "Dodaj firmę klienta: #{company_owner}"
 
 = simple_form_for [@client, @company] do |c|
 	= c.input :name, label: 'Nazwa firmy'
@@ -11,4 +11,4 @@
 		= addr.input :city, label: 'Miasto'
 		= addr.input :voivodeship, collection: Address::VOIS , label: 'Województwo'
 	= c.submit 'Dodaj firmę'
-	= link_to 'Wróć', client_path(company_owner)
+	= link_to 'Wróć', client_path(@client)

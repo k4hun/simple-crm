@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :current_company, only: [:show, :edit, :update, :destroy]
-  before_action :client, only: [:show, :edit, :update, :destroy]
+  before_action :current_client, only: [:show, :edit, :update, :destroy]
   
   def index
   	@companies = client.companies

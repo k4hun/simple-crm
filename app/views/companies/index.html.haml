@@ -1,11 +1,11 @@
 %h2
   Firmy klienta 
-  %i= "#{company_owner.full_name}"
+  %i= "#{company_owner}"
 %p
   = link_to 'Wróć', client_path(@client), class: 'btn btn-default'
   = link_to 'Dodaj firmę', new_client_company_path(@client), class: 'btn btn-success'
 
-%table.table.table-stripped
+%table.table.table-stripped.table-hover
   %tr
     %th id
     %th Nazwa
@@ -16,4 +16,4 @@
       %td= company.id
       %td= company.name
       %td= company.end_date.to_date
-      %td= link_to content_tag(:span, '', class: 'glyphicon glyphicon-list-alt' ), client_company_path(company_owner.id, company)
+      %td= link_to content_tag(:span, '', class: 'glyphicon glyphicon-list-alt' ), client_company_path(@client.id, company)

@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
 	belongs_to :client
 	has_one :address, dependent: :destroy
+	has_many :infos
 
 	accepts_nested_attributes_for :address
 

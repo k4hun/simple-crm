@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
+  
+  get 'client_infos/index'
+
   resources :clients do 
     member do
       get 'note' => 'clients#note'
     end
-    resources :companies  
+    resources :infos, :controller => :client_infos
+    resources :companies do
+      resources :infos, :controller => :company_infos
+    end
+    
   end
 
 

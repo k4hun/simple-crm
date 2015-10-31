@@ -9,4 +9,4 @@
 		= addr.input :city, label: 'Miasto'
 		= addr.input :voivodeship, collection: Address::VOIS , label: 'Województwo'
 	= c.submit 'Dodaj firmę'
-	= link_to 'Wróć', client_path(company_owner)
+	= link_to 'Wróć', client_company_path(@client, @company)

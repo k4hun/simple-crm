@@ -1,15 +1,23 @@
 %h2
 	=@company.name
-	%i= " - #{@client.full_name}"
-%p Adres:
+	%i= " - #{company_owner}"
+
+%p	
+	= link_to 'Zmień dane podstawowe', edit_client_company_path(@client, @company), class: 'btn btn-warning'
+	= link_to 'Zmień dane kontaktowe', client_company_infos_path(@client, @company), class: 'btn btn-warning'
+	= link_to 'Usuń firmę', client_company_path(@client, @company), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć te firmę?'}, class: 'btn btn-danger'
+
+%p Dane adresowe:
 %ul
 	%li= @company.address.street
 	%li= "#{@company.address.zip_code} #{@company.address.city}"
 	%li= @company.address.voivodeship
+- if @company.infos.any?
+	%p Dane kontaktowe:
+	%ul
+		- @company.infos.each do |info|
+			%li= "#{info.info_type}: #{info.value}"
 	
 %p= "O firmie: #{@company.description}"
 
-%p	
-	= link_to 'Zmień dane firmy', edit_client_company_path(@client, @company), class: 'btn btn-warning'
-	= link_to 'Usuń firmę', client_company_path(@client, @company), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć te firmę?'}, class: 'btn btn-danger'
 %p= link_to 'Wróć do listy firm', client_companies_path(@client), class: 'btn btn-primary'

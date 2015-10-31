@@ -1,3 +1,4 @@
 = simple_form_for @client do |c|
 	= c.input :comment, label: 'Notka'
 	= c.submit 'Zmień'
+	= link_to 'Wróć', client_path(@client)

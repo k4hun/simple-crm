@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027195848) do
+ActiveRecord::Schema.define(version: 20151031125309) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -26,8 +26,7 @@ ActiveRecord::Schema.define(version: 20151027195848) do
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string   "firstname"
-    t.string   "lastname"
+    t.string   "name"
     t.integer  "nip",        limit: 10
     t.text     "comment"
     t.boolean  "visible",               default: false
@@ -44,6 +43,15 @@ ActiveRecord::Schema.define(version: 20151027195848) do
     t.text     "description"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "infos", force: :cascade do |t|
+    t.string   "info_type"
+    t.string   "value"
+    t.integer  "client_id"
+    t.integer  "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
