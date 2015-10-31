@@ -9,7 +9,7 @@
   %p
     Dodaj informację
     = simple_form_for [@client, @company, @info], html: { class: 'form-inline' } do |i|
-      = i.input :info_type, collection: Info::TYPES, selected: Info::TYPES.first, label: 'Typ'
+      = i.input :info_type, collection: Info::INFO_TYPES, selected: Info::INFO_TYPES.first, label: 'Typ'
       = i.input :value, label: 'Wartość'
       = i.submit 'Dodaj'
 
