@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   
-  get 'client_infos/index'
 
+  
+  devise_for :crm_users, :skip => [:registrations], :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+  
+  # :skip => [:sessions, :registrations, :passwords]
+  # devise_scope :crm_users do
+  #   get 'login' => 'devise/sessions#new', :as => :new_crm_user_session
+  #   post 'login' => 'devise/sessions#create', :as => :crm_user_session
+  #   delete 'logout' => 'devise/sessions#destroy', :as => :destroy_crm_user_session
+  # end
+  
   resources :clients do 
     member do
       get 'note' => 'clients#note'
@@ -10,7 +19,6 @@ Rails.application.routes.draw do
     resources :companies do
       resources :infos, :controller => :company_infos
     end
-    
   end
 
 

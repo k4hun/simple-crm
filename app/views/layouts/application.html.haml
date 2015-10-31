@@ -8,12 +8,23 @@
     = csrf_meta_tags
   %body
     .container
-      %ul.nav.nav-tabs
-        %li= link_to 'Twoje konto'
-        %li.active= link_to 'Klienci', clients_path
-        %li= link_to 'Zadania'
-        %li= link_to 'Powiadomienia'
+      - if crm_user_signed_in?
+        %ul.nav.nav-tabs.col-md-10
+          %li= link_to 'Twoje konto'
+          %li= link_to 'Klienci', clients_path
+          %li= link_to 'Zadania'
+          %li= link_to 'Powiadomienia'
+        %ul.nav.nav-tabs.col-md-2
+          %li= link_to 'Wyloguj', destroy_crm_user_session_path, method: :delete
+      - else
+        %ul.nav.nav-tabs
+          %li{class: ('active' if params[:controller] == 'devise/sessions')}= link_to 'Logowanie', new_crm_user_session_path
+          %li{class: ('active' if params[:controller] == 'devise/passwords')}= link_to 'Odzyskiwanie hasła', new_password_path(resource_name)
+          
     .container
+      .col-md-12
+        = content_tag(:div, flash[:notice], class: ('alert alert-info')) if flash[:notice]
+        = content_tag(:div, flash[:error], class: ('alert alert-danger')) if flash[:danger]
       .col-md-9
         = yield
       .col-md-3
