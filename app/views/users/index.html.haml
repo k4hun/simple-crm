@@ -1,0 +1,16 @@
+%h2 Lista użytkowników
+
+= link_to 'Dodaj użytkownika', new_user_path if is_admin?
+
+%table.table.table-striped.table-hover
+  %tr 
+    %th Imie i nazwisko
+    %th Email
+    %th Data Dodania
+    %th Więcej
+  - @users.each do |user|
+    %td= "#{user.firstname} #{user.lastname}"
+    %td= user.email
+    %td= user.created_at.to_date
+    %td= link_to content_tag(:span, '', class: 'glyphicon glyphicon-list-alt'), user_path(user)
+    

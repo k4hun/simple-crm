@@ -1,0 +1,5 @@
+%h2 Zaloguj się
+= simple_form_for :sessions, :url => sessions_path, :method => :post do |f|
+  = f.input :email
+  = f.input :password, label: 'Hasło'
+  = f.submit "Zaloguj"

@@ -8,28 +8,29 @@
     = csrf_meta_tags
   %body
     .container
-      - if user_signed_in?
-        %ul.nav.nav-tabs.col-md-10
-          %li= link_to 'Twoje konto'
-          %li= link_to 'Klienci', clients_path
-          %li= link_to 'Zadania'
-          %li= link_to 'Powiadomienia'
-        %ul.nav.nav-tabs.col-md-2
-          %li= link_to 'Wyloguj', destroy_user_session_path, method: :delete
-      - else
+      - unless logged_in?
         %ul.nav.nav-tabs
-          %li{class: ('active' if params[:controller] == 'devise/sessions')}= link_to 'Logowanie', new_user_session_path
-          %li{class: ('active' if params[:controller] == 'devise/passwords')}= link_to 'Odzyskiwanie hasła', new_password_path(resource_name)
-          
+          %li{class: ('active' if params[:controller] == 'sessions')}= link_to 'Logowanie', login_path
+      - else
+        %ul.nav.nav-tabs.col-md-10
+          %li= link_to 'Twoje konto', account_path(current_user)
+          %li= link_to 'Klienci', clients_path
+          %li= link_to 'Użytkownicy', accounts_path
+          %li= link_to 'Zadania'
+        %ul.nav.nav-tabs.col-md-2
+          %li= link_to 'Wyloguj', logout_path, method: :delete
+
     .container
+      =params
       .col-md-12
         = content_tag(:div, flash[:notice], class: ('alert alert-info')) if flash[:notice]
-        = content_tag(:div, flash[:error], class: ('alert alert-danger')) if flash[:danger]
+        = content_tag(:div, flash[:alert], class: ('alert alert-danger')) if flash[:alert]
       .col-md-9
         = yield
-      .col-md-3
-        %h3 Ostatnia aktywność
-        %ul
-          %li Damian dodał Damiana
-          %li Batek dodał Bartka
-          %li yyy O.o
+      - if logged_in?
+        .col-md-3
+          %h3 Ostatnia aktywność
+          %ul
+            %li Damian dodał Damiana
+            %li Batek dodał Bartka
+            %li yyy O.o

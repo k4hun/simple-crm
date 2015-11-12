@@ -1,0 +1,9 @@
+%h1 Dodaj użytkownika
+= simple_form_for(@account) do |acc|
+  = acc.input :email
+  = acc.input :password
+  = acc.input :password_confirmation , label: 'Potwierdź hasło'
+  = acc.simple_fields_for(:user) do |f|
+    = f.input :first_name, label: 'Imię'
+    = f.input :last_name, label: 'Nazwisko'
+  = acc.submit "Dodaj"

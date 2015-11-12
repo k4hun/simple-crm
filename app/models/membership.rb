@@ -1,5 +1,5 @@
 class Membership < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :account
   
   SYSTEM_ROLES = %w(admin user)
   

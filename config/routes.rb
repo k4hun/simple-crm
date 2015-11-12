@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  
-  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
-  
+
   resources :clients do 
     member do
       get 'note' => 'clients#note'
@@ -12,6 +10,11 @@ Rails.application.routes.draw do
     end
   end
 
+  delete '/wyloguj' => 'sessions#destroy', as: 'logout'
+  get '/zaloguj' => 'sessions#new', as: 'login'
+  get '/nowe_konto' => 'accounts#new', as: 'register'
+  resources :sessions, only: [:create]
+  resources :accounts
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
