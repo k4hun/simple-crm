@@ -20,8 +20,12 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id]) if session[:user_id]
   end
   
+  def current_account
+    @account = Account.find(params[:id])
+  end
+  
   def require_admin
-    redirect_to root_path, error: 'Dostępne tylko dla admina' if current_account.membership.role != 'admin'
+    redirect_to root_path, error: 'Dostępne tylko dla admina' if current_user.account.membership.role != 'admin'
   end
   
   def authenticate_user

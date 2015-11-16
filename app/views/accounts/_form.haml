@@ -1,0 +1,13 @@
+= simple_form_for(@account) do |acc|
+  = acc.input :email
+  = acc.input :password, as: :string
+  = acc.input :password_confirmation , label: 'Potwierdź hasło'
+  = acc.simple_fields_for(:user) do |f|
+    = f.input :first_name, label: 'Imię'
+    = f.input :last_name, label: 'Nazwisko'
+  = acc.submit "Dodaj"
+  = link_to 'Wróć', accounts_path
+  
+=@account.errors.full_messages.each do |m|
+  .alert.alert-danger
+    = m if @account.errors.any?

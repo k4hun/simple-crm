@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   get '/zaloguj' => 'sessions#new', as: 'login'
   get '/nowe_konto' => 'accounts#new', as: 'register'
   resources :sessions, only: [:create]
-  resources :accounts
+  resources :accounts do
+    member do
+      post 'make_admin'
+    end
+  end
+  resources :users, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

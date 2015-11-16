@@ -1,2 +1,21 @@
-%h1 Accounts#show
-%p Find me in app/views/accounts/show.html.haml
+%h2 Dane użytkownika
+
+- if is_admin?
+  -  controller.redirect_to edit_account_path(@account)
+
+%table.table
+  %tr
+    %td Imię i nazwisko:
+    %td= @account.user.full_name
+  %tr
+    %td Adres email:
+    %td= @account.email
+  %tr
+    %td Data rejestracji:
+    %td= @account.created_at.to_date
+  %tr
+    %td Telefon:
+    %td= @account.user.phone
+  %tr
+    %td Skype:
+    %td= @account.user.skype
