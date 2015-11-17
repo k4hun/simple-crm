@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
     if auth
       session[:user_id] = auth.user_id
       flash[:notice] = 'Zalogowano pomyślnie'
+      current_user.account.touch
       redirect_to root_path
     else
-      @pass = params[:password]
       redirect_to login_path, alert: 'Zły login lub hasło'
     end
   end

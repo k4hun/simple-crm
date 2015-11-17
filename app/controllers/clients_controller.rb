@@ -16,6 +16,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
+      @client.create_activity key: "dodał klienta #{@client.name}", owner: current_user
       redirect_to clients_path, notice: 'Klient został dodany'
     else
       render 'new'
@@ -27,6 +28,7 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(client_params)
+      @client.create_activity key: "zaktualizował klienta #{@client.name}", owner: current_user
       redirect_to client_path(@client), notice: 'Dane zostały zmienione'
     else
       render 'edit'
@@ -34,6 +36,7 @@ class ClientsController < ApplicationController
   end
 
   def destroy
+    @client.create_activity key: "usunął klienta #{@client.name}", owner: current_user
     @client.destroy
     redirect_to clients_path, notice: 'Klient został usunięty'
   end

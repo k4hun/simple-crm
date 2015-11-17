@@ -6,4 +6,8 @@ module ApplicationHelper
       return false
     end
   end
+  
+  def activity(owner_id, key, parameters)
+    return "#{User.find(owner_id).full_name} #{key}"
+  end
 end

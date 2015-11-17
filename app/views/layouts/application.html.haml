@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Firmowo24.pl
+    %title Simple CRM
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -31,6 +31,10 @@
         .col-md-3
           %h3 Ostatnia aktywność
           %ul
-            %li Damian dodał Damiana
-            %li Batek dodał Bartka
-            %li yyy O.o
+            - @activities.each do |a|
+              %li
+                %p
+                  = a.created_at.strftime("%d.%m.%Y %R")
+                  %br
+                  = activity(a.owner_id, a.key, a.parameters)
+            

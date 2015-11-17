@@ -28,6 +28,8 @@ gem 'simple_form'
 gem 'date_validator'
 gem 'devise'
 
+gem 'public_activity'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

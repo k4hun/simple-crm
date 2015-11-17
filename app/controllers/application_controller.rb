@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :authenticate_user
+  before_action :get_activities
   
   helper_method :current_user
   helper_method :logged_in?
@@ -35,6 +36,10 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     session[:user_id].present?
+  end
+  
+  def get_activities
+    @activities = PublicActivity::Activity.order(created_at: :desc)
   end
   
 end
