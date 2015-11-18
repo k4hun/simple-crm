@@ -16,7 +16,8 @@ class CompaniesController < ApplicationController
 
   def create
   	@company = client.companies.new(company_params)
-    if @client.save
+    if @company.save
+      @company.create_activity key: "dodał firmę #{@company.name} dla klienta #{@company.client.name}", owner: current_user
       redirect_to client_path(client), notice: 'Firma został dodany'
     else
       render 'new'
@@ -28,6 +29,7 @@ class CompaniesController < ApplicationController
   
   def update
     if @company.update(company_params)
+      @company.create_activity key: "zaktualizował firmę #{@company.name} dla klienta #{@company.client.name}", owner: current_user
       redirect_to client_company_path(@client, @company), notice: 'Dane firmy zmienione'
     else
       render 'edit'
@@ -35,6 +37,7 @@ class CompaniesController < ApplicationController
   end
   
   def destroy
+    @company.create_activity key: "usunął firmę #{@company.name} dla klienta #{@company.client.name}", owner: current_user
     @company.destroy
     redirect_to client_path(@client), notice: 'Klient został usunięty'
   end

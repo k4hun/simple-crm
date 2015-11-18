@@ -1,4 +1,6 @@
 class Company < ActiveRecord::Base
+  include PublicActivity::Model
+
 	belongs_to :client
 	has_one :address, dependent: :destroy
 	has_many :infos
