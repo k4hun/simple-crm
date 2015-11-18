@@ -30,9 +30,9 @@
       - if logged_in?
         .col-md-3
           %h3 Ostatnia aktywność
-          %ul
+          %ul.activities
             - @activities.each do |a|
-              %li
+              %li{class: a.trackable_type.downcase}
                 %p
                   = a.created_at.strftime("%d.%m.%Y %R")
                   %br

@@ -1,7 +1,9 @@
 class Account < ActiveRecord::Base
+  include PublicActivity::Model
+
   before_validation :add_membership
-  
   has_secure_password
+  
   belongs_to :user
   has_one :membership, dependent: :destroy
   accepts_nested_attributes_for :user

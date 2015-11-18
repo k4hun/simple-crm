@@ -13,3 +13,18 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.activities {
+  li {
+    &.account {
+      color: blue;
+    }
+    &.company {
+      color: red;
+    }
+    &.client {
+      color: green;
+    }
+  }
+  
+}

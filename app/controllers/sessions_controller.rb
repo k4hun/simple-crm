@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     if auth
       session[:user_id] = auth.user_id
       flash[:notice] = 'Zalogowano pomyślnie'
+      current_user.account.create_activity key: "zalogował się", owner: current_user
       current_user.account.touch
       redirect_to root_path
     else
@@ -17,6 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.account.create_activity key: "wylogował się", owner: current_user
     reset_session
     redirect_to root_path, notice: 'Wylogowano'
   end
